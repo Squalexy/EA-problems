@@ -33,7 +33,7 @@ int three_sum(vector<int> S)
     {
         j = i + 1;
         k = n - 1;
-        while (j < k)
+        while (j < k)0
         {
             sum = S[i] + S[j] + S[k];
             if (sum == 0){
