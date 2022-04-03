@@ -22,19 +22,19 @@ void net(int v, int c){
 
     // procurar nó que já esteja na rede
     for (int i = 0; i < n; i++){
-        if (visited[i] == false && n_ligacoes[i] < k)
+        if (visited[i] == true)
         {
             for (int j = 0; j < n; j++)
             {
                 // se tiver custo = 0 não há ligação possível entre os nós
-                if (visited[j] == false && cost[i][j] > 0 && n_ligacoes[j] < k)
+                if (visited[j] == false && cost[i][j] > 0 && n_ligacoes[i] < k)
                 {
                     // vou ligar os nós
                     n_ligacoes[i] += 1;
                     n_ligacoes[j] += 1;
-                    visited[i] = true;
+                    visited[j] = true;
                     net(v + 1, c + cost[i][j]);
-                    visited[i] = false;
+                    visited[j] = false;
                     n_ligacoes[i] -= 1;
                     n_ligacoes[j] -= 1;
                 }
@@ -74,7 +74,9 @@ int main(){
         }
         
         best = 100000;                   // nº suficientemente grande
+        visited[0] = true;
         net(0, 0);
+        
 
         if (best == 100000) cout << "NO WAY!" << endl;
         else cout << best << endl;
